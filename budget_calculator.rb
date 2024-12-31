@@ -42,50 +42,62 @@ class BudgetCalculator
   attr_reader :incomes, :expenses
 
   def initialize
-    # Your job is to fill this in!
+    @incomes = []
+    @expenses = []
   end
 
   def add_income(name, dollar_amount, annual_frequency)
-    # Your job is to fill this in!
+    incomes << Income.new(name, dollar_amount, annual_frequency)  
   end
 
   def add_expense(name, dollar_amount, annual_frequency)
-    # Your job is to fill this in!
+    expenses << Expense.new(name, dollar_amount, annual_frequency)
   end
 
   def annual_income_total
-    # Your job is to fill this in!
+    total = 0
+    @incomes.each do |income|
+      total += income.dollar_amount * income.annual_frequency
+    end
+    total
   end 
 
   def annual_expenses_total
-    # Your job is to fill this in!
+    total = 0
+    @expenses.each do |expense|
+      total += expense.dollar_amount * expense.annual_frequency
+    end
+    total
   end 
 
   def annual_net_income
-   # Your job is to fill this in!
+    annual_income_total - annual_expenses_total
   end
 
   def find_income(name)
-    # Your job is to fill this in!
+    # @incomes.each do |income|
+    #   return income if income.name == name
+    # end
+    @incomes.find {|income| income.name == name}
   end
 
   def find_expense(name)
-    # Your job is to fill this in!
+    @expenses.find {|expense| expense.name == name}
   end
 
   def edit_income_dollar_amount(name, dollar_amount)
-    # Your job is to fill this in!
+    find_income(name).dollar_amount = dollar_amount
   end
-
+  
   def edit_expense_dollar_amount(name, dollar_amount)
-    # Your job is to fill this in!
+    find_expense(name).dollar_amount = dollar_amount
   end
-
+  
   def edit_income_annual_frequency(name, annual_frequency)
-    # Your job is to fill this in!
+    find_income(name).annual_frequency = annual_frequency
   end
 
   def edit_expense_annual_frequency(name, annual_frequency)
-    # Your job is to fill this in!
+    find_expense(name).annual_frequency = annual_frequency
   end
 end
